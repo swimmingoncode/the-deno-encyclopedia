@@ -2,7 +2,7 @@
 
 ![Book Cover v1](assets/img/cover-v1-preview.png)
 
-### Goals and Objectives
+### Design Goals
 
 - This book series should be approach with a fresh style. Not being another
   _"Pro Book of 'insert your tech stack here'"_
