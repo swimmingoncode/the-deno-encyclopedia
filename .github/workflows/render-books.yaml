@@ -17,6 +17,7 @@ jobs:
         env:
           BOOK: ${{ matrix.book }}
         run: |
+          mkdir output
           echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
 
       - uses: docker://pandoc/latex:2.9
