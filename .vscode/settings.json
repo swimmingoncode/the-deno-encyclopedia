@@ -3,4 +3,7 @@
     "deno.unstable": true,
     "deno.path": "/Users/pandres95/.dvm/bin/deno",
     "deno.testing.enable": true,
+    "grammarly.files.include": [
+        "src/books/**/*.md"
+    ],
 }
