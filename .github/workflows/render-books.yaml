@@ -1,0 +1,49 @@
+name: Render Books
+
+on: push
+
+jobs:
+  render:
+    runs-on: ubuntu-22.04
+    container: pandoc/latex:2.9
+    strategy:
+      max-parallel: 5
+      matrix:
+        book: [1-fundamentals]
+        format: [pdf, epub]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        if: ${{ matrix.format != 'epub' }}
+        run: |
+          tlmgr install \
+            footnotebackref \
+            ly1 \
+            mdframed \
+            mweights \
+            needspace \
+            sourcecodepro \
+            sourcesanspro \
+            titling \
+            zref
+
+      - name: create book file list
+        id: files_list
+        working-directory: src/books/${{ matrix.book }}
+        run: |
+          echo "::set-output name=files::$(ls -R | grep md | sed 's/\n/ /g')"
+
+      - name: render book
+        env:
+          BOOK: ${{ matrix.book }}
+          FORMAT: ${{ matrix.format }}
+          FILES: ${{ steps.files_list.outputs.files }}
+        run: |
+          src/scripts/build.sh
+
+      - name: upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ matrix.book }}-${{ matrix.format }}
+          path: src/books/${{ matrix.book }}/the-deno-encyclopedia-${{ matrix.book }}.${{ matrix.format }}

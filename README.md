@@ -76,7 +76,7 @@
 
 #### Content
 
-- [Table Of Contents](src/1-fundamentals/TOC.md)
+- [Table Of Contents](src/meta/1-fundamentals-toc.md)
 
 ### Part 2: Zero to Deno
 
