@@ -22,6 +22,11 @@ jobs:
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
 
+      - name: "[!EPUB] Remove _metadata.md"
+        if: ${{ matrix.format != "epub" }}
+        run: |
+          rm -rf src/books/${BOOK}/_cover/_metadata.md
+
       - name: render book
         uses: docker://pandoc/latex:2.9
         with:

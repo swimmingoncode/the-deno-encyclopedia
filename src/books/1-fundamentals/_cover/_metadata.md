@@ -1,7 +1,7 @@
 ---
 identifier:
-- scheme: ISBN-13     # TODO: Change with actual ISBN type in the future
-  text: 9781234567897 # TODO: Change with actual ISBN in the future
+- scheme: ISBN-13       # TODO: Change with actual ISBN type in the future
+  text: "9781234567897" # TODO: Change with actual ISBN in the future
 title:
 - type: main
   text: "The Deno Encyclopedia / part 1: fundamentals"
