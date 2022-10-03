@@ -14,13 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "[!EPUB] Remove _metadata.md"
-        if: ${{ matrix.format != 'epub' }}
-        env:
-          BOOK: ${{ matrix.book }}
-        run: |
-          rm -rf src/books/${BOOK}/_cover/_metadata.md
-
       - name: create book file list
         id: files_list
         env:
