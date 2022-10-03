@@ -62,7 +62,7 @@
         - Setting up VSCode to work with Deno
         - Formatting
         - Linting
-    2. console.log('Hello, deno');
+    2. `console.log('Hello, deno :sauropod:')`;
         - Using the REPL
         - Writing your first script in Deno
     3. Importing libraries
