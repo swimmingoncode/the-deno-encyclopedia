@@ -1,0 +1,29 @@
+name: Render Books
+
+on: push
+
+jobs:
+  render:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: true
+      matrix:
+        book: [1-fundamentals]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: create file list
+        id: files_list
+        env:
+          BOOK: ${{ matrix.book }}
+        run: |
+          echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
+
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: --output=output/${{ matrix.book }}.pdf ${{ steps.files_list.outputs.files }}
+          
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ matrix.book }}
+          path: output/${{ matrix.book }}.pdf

@@ -1,3 +1,5 @@
+# Table of Contents
+
 0. To the reader
     1. How this book is structured (Ref: (this file)[TOC.md])
     2. "Symbology" and notation
