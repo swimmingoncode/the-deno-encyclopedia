@@ -13,7 +13,7 @@ pandoc \
     --indented-code-classes=javascript \
     --to ${FORMAT} \
     --top-level-division=chapter \
-    --number-sections --toc --toc-depth 2 \
+    --number-sections --number-offset=-1 --toc --toc-depth 2 \
     --output=the-deno-encyclopedia-${BOOK}.${FORMAT} \
     ${FILES}
 
