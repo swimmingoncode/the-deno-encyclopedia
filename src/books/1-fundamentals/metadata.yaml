@@ -1,4 +1,3 @@
----
 title: "The Deno Encyclopedia"
 subtitle: "Part 1: fundamentals"
 description: |
@@ -6,6 +5,4 @@ description: |
 author:
 - Pablo Andrés Dorado Suárez
 book: true
-classoption: [oneside]
 subject: "Markdown"
----
