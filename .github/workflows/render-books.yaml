@@ -14,6 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: "[!EPUB] Remove _metadata.md"
+        if: ${{ matrix.format != 'epub' }}
+        env:
+          BOOK: ${{ matrix.book }}
+        run: |
+          rm -rf src/books/${BOOK}/_cover/_metadata.md
+
       - name: create book file list
         id: files_list
         env:
@@ -21,11 +28,6 @@ jobs:
         run: |
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
-
-      - name: "[!EPUB] Remove _metadata.md"
-        if: ${{ matrix.format != "epub" }}
-        run: |
-          rm -rf src/books/${BOOK}/_cover/_metadata.md
 
       - name: render book
         uses: docker://pandoc/latex:2.9
