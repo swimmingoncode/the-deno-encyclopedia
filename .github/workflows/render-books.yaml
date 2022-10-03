@@ -9,10 +9,11 @@ jobs:
       fail-fast: true
       matrix:
         book: [1-fundamentals]
+        format: [pdf, epub]
     steps:
       - uses: actions/checkout@v2
 
-      - name: create file list
+      - name: create book file list
         id: files_list
         env:
           BOOK: ${{ matrix.book }}
@@ -20,11 +21,15 @@ jobs:
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
 
-      - uses: docker://pandoc/latex:2.9
+      - name: render book
+        uses: docker://pandoc/latex:2.9
         with:
-          args: --output=output/${{ matrix.book }}.pdf ${{ steps.files_list.outputs.files }}
-          
-      - uses: actions/upload-artifact@master
+          args: |
+            --output=output/${{ matrix.book }}.${{ matrix.format }} ${{ steps.files_list.outputs.files }}
+            --from gfm
+
+      - name: upload artifact
+        uses: actions/upload-artifact@master
         with:
-          name: ${{ matrix.book }}
-          path: output/${{ matrix.book }}.pdf
+          name: ${{ matrix.book }}-${{ matrix.format }}
+          path: output/${{ matrix.book }}.${{ matrix.format }}

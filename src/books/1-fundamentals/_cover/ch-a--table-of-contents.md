@@ -1,7 +1,7 @@
 # Table of Contents
 
 0. To the reader
-    1. How this book is structured (Ref: (this file)[TOC.md])
+    1. How this book is structured (#Ref: [this file](./ch-a--table-of-contents.md))
     2. "Symbology" and notation
 1. Introduction
     1. A brief history class
@@ -66,9 +66,9 @@
         - Using the REPL
         - Writing your first script in Deno
     3. Importing libraries
-        - https://deno.land/x
-        - https://esm.sh
-        - [Using npm packages](4.3-importing-libraries/using-npm-packages/README.md)
+        - `https://deno.land/x`
+        - `https://esm.sh`
+        - [Using npm packages](../ch4--hello-world#4.3.3-using-npm-packages)
         - Using import maps sort things out
     4. Managing permissions with Deno
 5. First steps with Deno
@@ -86,7 +86,7 @@
     6. Databases
 6. Preparing to publish and deploy
     1. Publishing packages
-        1. The native way: Using https:/deno.land/x
+        1. The native way: Using `https://deno.land/x`
         2. The hybrid: Using NPM
             - Tips to keep compatibility between Deno and Node
     2. Bundling and compiling
