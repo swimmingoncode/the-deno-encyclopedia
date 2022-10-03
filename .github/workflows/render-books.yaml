@@ -25,7 +25,7 @@ jobs:
       - name: render book
         uses: docker://pandoc/latex:2.9
         with:
-          args: --from gfm --output=output/${{ matrix.book }}.${{ matrix.format }} ${{ steps.files_list.outputs.files }}
+          args: --metadata-file src/books/${BOOK}/metadata.yaml --from gfm --output=output/${{ matrix.book }}.${{ matrix.format }} ${{ steps.files_list.outputs.files }}
 
       - name: upload artifact
         uses: actions/upload-artifact@master
