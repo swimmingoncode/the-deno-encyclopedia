@@ -7,13 +7,13 @@ cd src/books/$BOOK
 export FILES=${FILES:-$(ls -R | grep md | sed 's/\n/ /g')}
 set -x
 pandoc \
-    --from gfm+emoji \
+    --from markdown+gfm_auto_identifiers+emoji \
     --metadata-file metadata.yaml \
     --template ../../meta/template.tex \
     --indented-code-classes=javascript \
     --to ${FORMAT} \
-    --top-level-division=chapter \
-    --number-sections --number-offset=-1 --toc --toc-depth 2 \
+    --top-level-division=chapter --section-divs \
+    --number-sections --toc --toc-depth 2 \
     --output=the-deno-encyclopedia-${BOOK}.${FORMAT} \
     ${FILES}
 
