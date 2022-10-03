@@ -4,10 +4,10 @@ on: push
 
 jobs:
   render:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
+    container: pandoc/latex:2.9
     strategy:
-      fail-fast: true
-      max-parallel: 10
+      max-parallel: 5
       matrix:
         book: [1-fundamentals]
         format: [pdf, epub]
@@ -16,19 +16,29 @@ jobs:
 
       - name: create book file list
         id: files_list
-        env:
-          BOOK: ${{ matrix.book }}
+        working-directory: src/books/${{ matrix.book }}
         run: |
           mkdir output
-          echo "::set-output name=files::$(printf '"%s" ' src/books/${BOOK}/**/*.md)"
+          echo "::set-output name=files::$(printf '"%s" ' **/*.md)"
 
       - name: render book
-        uses: docker://pandoc/latex:2.9
-        with:
-          args: --metadata-file src/books/${{ matrix.book }}/metadata.yaml --from gfm+emoji --output=output/${{ matrix.book }}.${{ matrix.format }} ${{ steps.files_list.outputs.files }}
+        env:
+          BOOK: ${{ matrix.book }}
+          FORMAT: ${{ matrix.format }}
+          FILES: ${{ steps.files_list.outputs.files }}
+        working-directory: src/books/${{ matrix.book }}
+        run: |
+          pandoc \
+            --from gfm+emoji -t \
+            --metadata-file metadata.yaml \
+            --template ../../meta/template.tex \
+            --indented-code-classes=javascript \
+            --to ${{ matrix.format }} \
+            --toc --toc-depth 2 \
+            --output=output ${{ steps.files_list.outputs.files }}
 
       - name: upload artifact
         uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.book }}-${{ matrix.format }}
-          path: output/${{ matrix.book }}.${{ matrix.format }}
+          path: src/books/${{ matrix.book }}/output

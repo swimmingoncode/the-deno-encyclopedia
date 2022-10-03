@@ -68,7 +68,7 @@
     3. Importing libraries
         - `https://deno.land/x`
         - `https://esm.sh`
-        - [Using npm packages](../ch4--hello-world#4.3.3-using-npm-packages)
+        - [Using npm packages](../books/1-fundamentals/chap4.md#4.3.3-using-npm-packages)
         - Using import maps sort things out
     4. Managing permissions with Deno
 5. First steps with Deno

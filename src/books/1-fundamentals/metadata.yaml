@@ -1,8 +1,11 @@
 ---
-title: "The Deno Encyclopedia / part 1: fundamentals"
-subtitle: 
+title: "The Deno Encyclopedia"
+subtitle: "Part 1: fundamentals"
 description: |
   A book series that guides you into the depths of Deno runtime and its quirks.
 author:
 - Pablo Andrés Dorado Suárez
+book: true
+classoption: [oneside]
+subject: "Markdown"
 ---
