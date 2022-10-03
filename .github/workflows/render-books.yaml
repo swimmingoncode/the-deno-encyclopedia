@@ -15,34 +15,27 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
+        if: ${{ matrix.format != 'epub' }}
         run: |
-          tlmgr install footnotebackref
+          tlmgr install \
+            footnotebackref \
+            mdframed \
+            needspace \
+            zref
 
       - name: create book file list
         id: files_list
         working-directory: src/books/${{ matrix.book }}
         run: |
-          pwd
-          printf '"%s" ' **/*.md
-          echo "::set-output name=files::$(printf '"%s" ' **/*.md)"
+          echo "::set-output name=files::$(ls -R | grep md | sed -z 'N:s/\n/ /g')"
 
       - name: render book
         env:
           BOOK: ${{ matrix.book }}
           FORMAT: ${{ matrix.format }}
           FILES: ${{ steps.files_list.outputs.files }}
-        working-directory: src/books/${{ matrix.book }}
         run: |
-          pandoc \
-            --from gfm+emoji -t \
-            --metadata-file metadata.yaml \
-            --template ../../meta/template.tex \
-            --indented-code-classes=javascript \
-            --to ${{ matrix.format }} \
-            --number-sections --toc --toc-depth 2 \
-            --output=the-deno-encyclopedia-${{ matrix.book }}.${{ matrix.format }} \
-            ${{ steps.files_list.outputs.files }}
-          ls -la
+          src/scripts/build.sh
 
       - name: upload artifact
         uses: actions/upload-artifact@master
