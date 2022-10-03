@@ -1,6 +1,4 @@
-# The Deno Encyclopedia
-
-![Book Cover v1](assets/img/cover-v1-preview.png)
+![The Deno Encyclopedia](assets/img/banner.png)
 
 ### Design Goals
 
