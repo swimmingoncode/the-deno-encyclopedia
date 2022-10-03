@@ -18,8 +18,8 @@ jobs:
         id: files_list
         working-directory: src/books/${{ matrix.book }}
         run: |
-          mkdir output
-          echo "$(pwd) $(printf '"%s" ' **/*.md)"
+          echo "$(pwd)"
+          printf '"%s" ' **/*.md
           echo "::set-output name=files::$(printf '"%s" ' **/*.md)"
 
       - name: render book
@@ -37,6 +37,7 @@ jobs:
             --to ${{ matrix.format }} \
             --toc --toc-depth 2 \
             --output=output ${{ steps.files_list.outputs.files }}
+          ls -la
 
       - name: upload artifact
         uses: actions/upload-artifact@master
