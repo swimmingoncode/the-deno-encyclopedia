@@ -32,7 +32,7 @@ jobs:
         id: files_list
         working-directory: src/books/${{ matrix.book }}
         run: |
-          echo "::set-output name=files::$(ls -R | grep md | sed 's/\n/ /g')"
+          echo "::set-output name=files::$(find ./mainmatter -mindepth 1 | grep md | sed 's/\n/ /g')"
 
       - name: render book
         env:

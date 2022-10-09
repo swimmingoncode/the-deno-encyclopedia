@@ -6,4 +6,10 @@
     "grammarly.files.include": [
         "src/books/**/*.md"
     ],
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file"
+        }
+    ],
 }

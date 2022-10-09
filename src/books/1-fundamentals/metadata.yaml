@@ -4,7 +4,11 @@ subtitle: "Part 1: fundamentals"
 description: |
   A book series that guides you into the depths of Deno runtime and its quirks.
 author:
-- Pablo Andrés Dorado Suárez
+  - Pablo Andrés Dorado Suárez
 book: true
-subject: "Markdown"
+is-draft: true
+geometry:
+  - paperwidth=6in
+  - paperheight=9in
 ---
+
