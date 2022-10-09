@@ -62,7 +62,7 @@ The response to my request was an absolute yes!
 
 I did some tests in the computer lab, set up some computers to use the program,
 and got rest, preparing for the day. I remember being praised by some teachers
-these days and being called a genius and _"the next _Bill Gates_."
+these days and being called a genius and _"the next Bill Gates"_.
 
 At this point, you'd probably guessed this story's most hilarious part: the
 program failed spectacularly! The program couldn't cast more than 5 or 6 votes

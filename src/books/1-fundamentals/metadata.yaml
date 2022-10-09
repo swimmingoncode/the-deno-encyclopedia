@@ -6,17 +6,9 @@ description: |
 author:
   - Pablo Andrés Dorado Suárez
 book: true
-subject: "Markdown"
-abstract: |
-  \textit{\textbf{The Deno Encyclopedia}} \newline
-  by Pablo Dorado \vspace{1em}
-
-  Copyright &copy; 2022 Pablo Dorado. All rights reserved. \vspace{2em}
-
-  Published by Swimming On Code. \vspace{6.5in}
-
-  This book was diagrammed using \LaTeX&nbsp;and built from source using Pandoc. \newline
-  More details on \href{https://github.com/swimmingoncode/the-deno-encyclopedia}{https://github.com/swimmingoncode/the-deno-encyclopedia}.
-
+is-draft: true
+geometry:
+  - paperwidth=6in
+  - paperheight=9in
 ---
 
