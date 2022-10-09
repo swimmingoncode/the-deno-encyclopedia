@@ -865,98 +865,16 @@ $endif$
 
 \begin{document}
 
-%%
-%% begin titlepage
-%%
-$if(beamer)$
-$else$
-$if(titlepage)$
-\begin{titlepage}
-$if(titlepage-background)$
-\newgeometry{top=2cm, right=4cm, bottom=3cm, left=4cm}
-$else$
-\newgeometry{left=6cm}
-$endif$
-$if(titlepage-color)$
-\definecolor{titlepage-color}{HTML}{$titlepage-color$}
-\newpagecolor{titlepage-color}\afterpage{\restorepagecolor}
-$endif$
-$if(titlepage-background)$
-\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{$titlepage-background$}};
-$endif$
-\newcommand{\colorRule}[3][black]{\textcolor[HTML]{#1}{\rule{#2}{#3}}}
-\begin{flushleft}
-\noindent
-\\[-1em]
-\color[HTML]{$if(titlepage-text-color)$$titlepage-text-color$$else$5F5F5F$endif$}
-\makebox[0pt][l]{\colorRule[$if(titlepage-rule-color)$$titlepage-rule-color$$else$435488$endif$]{1.3\textwidth}{$if(titlepage-rule-height)$$titlepage-rule-height$$else$4$endif$pt}}
-\par
-\noindent
-
-$if(titlepage-background)$
-% The titlepage with a background image has other text spacing and text size
-{
-  \setstretch{2}
-  \vfill
-  \vskip -8em
-  \noindent {\huge \textbf{\textsf{$title$}}}
-  $if(subtitle)$
-  \vskip 1em
-  {\Large \textsf{$subtitle$}}
-  $endif$
-  \vskip 2em
-  \noindent {\Large \textsf{$for(author)$$author$$sep$, $endfor$} \vskip 0.6em \textsf{$date$}}
-  \vfill
-}
-$else$
-{
-  \setstretch{1.4}
-  \vfill
-  \noindent {\huge \textbf{\textsf{$title$}}}
-  $if(subtitle)$
-  \vskip 1em
-  {\Large \textsf{$subtitle$}}
-  $endif$
-  \vskip 2em
-  \noindent {\Large \textsf{$for(author)$$author$$sep$, $endfor$}}
-  \vfill
-}
+$if(title)$
+\maketitle
 $endif$
 
-$if(titlepage-logo)$
-\noindent
-\includegraphics[width=$if(logo-width)$$logo-width$$else$35mm$endif$, left]{$titlepage-logo$}
-$endif$
 
-$if(titlepage-background)$
-$else$
-\textsf{$date$}
-$endif$
-\end{flushleft}
-\end{titlepage}
-\restoregeometry
-\pagenumbering{arabic} 
-$endif$
-$endif$
-
-%%
-%% end titlepage
-%%
+\thispagestyle{empty}
+$abstract$
 
 $if(has-frontmatter)$
 \frontmatter
-$endif$
-$if(title)$
-$if(beamer)$
-\frame{\titlepage}
-$else$
-\maketitle
-$endif$
-$if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
-$endif$
 $endif$
 
 $if(first-chapter)$
@@ -966,23 +884,16 @@ $endif$
 
 $for(include-before)$
 $include-before$
-
 $endfor$
+
+%%
+%% toc
+%%
+
 $if(toc)$
 $if(toc-title)$
 \renewcommand*\contentsname{$toc-title$}
 $endif$
-$if(beamer)$
-\begin{frame}[allowframebreaks]
-$if(toc-title)$
-  \frametitle{$toc-title$}
-$endif$
-  \tableofcontents[hideallsubsections]
-\end{frame}
-$if(toc-own-page)$
-\newpage
-$endif$
-$else$
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
@@ -994,19 +905,35 @@ $if(toc-own-page)$
 $endif$
 }
 $endif$
-$endif$
+
+%%
+%% list of figures
+%%
+
 $if(lof)$
 \listoffigures
 $endif$
+
+%%
+%% list of tables
+%%
+
 $if(lot)$
 \listoftables
 $endif$
+
 $if(linestretch)$
 \setstretch{$linestretch$}
 $endif$
+
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+
+%%
+%% the book itself
+%%
+
 $body$
 
 $if(has-frontmatter)$
